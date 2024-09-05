@@ -1,0 +1,27 @@
+{% extends 'estoque/base.html' %}
+{% block content %}
+{% load static %}
+{% block title %}Detalhes do Produto{% endblock %}
+
+<div class="product-detail mt-4">
+    <h2>{{ produto.nome }}</h2>
+    <div class="product-info">
+        {% if produto.imagem %}
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="product-image">
+        {% else %}
+            <img src="{% static 'imagens/default.png' %}" alt="Imagem não disponível" class="product-image">
+        {% endif %}
+        <div class="product-details">
+            <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
+            <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
+            <p><strong>Quantidade:</strong> {{ produto.quantidade }}</p>
+            <p><strong>Categoria:</strong> {{ produto.categoria.nome }}</p>
+        </div>
+    </div>
+    <div class="product-actions mt-3">
+        <a href="{% url 'editar_produto' produto.id %}" class="btn btn-primary">Editar Produto</a>
+        <a href="{% url 'listar_produtos' %}" class="btn btn-secondary">Voltar à lista de produtos</a>
+    </div>
+    <script src="/estoque/static/js/script.js" defer></script>
+</div>
+{% endblock %}

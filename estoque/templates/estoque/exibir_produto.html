@@ -1,0 +1,79 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+<style>
+    .produto-container {
+        width: 80%;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .produto-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .produto-header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .produto-info {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .produto-info p {
+        margin: 0 0 10px;
+    }
+
+    .produto-info .preco {
+        font-size: 20px;
+        color: #e74c3c;
+        font-weight: bold;
+    }
+
+    .produto-info .quantidade {
+        color: #2ecc71;
+    }
+
+    .voltar {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .voltar a {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    .voltar a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="produto-container">
+    <div class="produto-header">
+        <h1>{{ produto.nome }}</h1>
+    </div>
+    <div class="produto-info">
+        <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
+        <p class="preco">Preço: R$ {{ produto.preco }}</p>
+        <p class="quantidade">Quantidade em estoque: {{ produto.quantidade }}</p>
+    </div>
+    <div class="voltar">
+        <a href="{% url 'listar_produtos' %}">Voltar para a lista de produtos</a>
+    </div>
+    <script src="/estoque/static/js/script.js" defer></script>
+</div>
+{% endblock %}

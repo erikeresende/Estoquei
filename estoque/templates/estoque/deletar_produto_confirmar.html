@@ -1,0 +1,25 @@
+{% extends 'estoque/base.html' %}
+{% load static %}
+{% block title %}Confirmar Exclusão{% endblock %}
+{% load custom_filters %}
+
+<div class="container mt-4">
+    <header>
+        <h1>Confirmar Exclusão do Produto</h1>
+    </header>
+    <section>
+        <p>Tem certeza de que deseja excluir o produto "<strong>{{ produto.nome }}</strong>"?</p>
+        
+        <form method="post" action="{% url 'deletar_produto' produto.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Excluir</button>
+                <a href="{% url 'listar_produtos' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </section>
+
+    <!-- Incluindo o script JavaScript -->
+    <script src="/estoque/static/js/script.js" defer></script>
+</div>
+{% endblock %}

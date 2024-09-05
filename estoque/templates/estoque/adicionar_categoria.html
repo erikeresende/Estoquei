@@ -1,0 +1,20 @@
+{% extends 'estoque/base.html' %}
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+
+<div class="container mt-4">
+    <header>
+        <h1>Adicionar Categoria</h1>
+    </header>
+    <main>
+        <form method="post" id="add-category-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'lista_categorias' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </main>
+    <script src="/estoque/static/js/script.js" defer></script>
+</div>
+{% endblock %}

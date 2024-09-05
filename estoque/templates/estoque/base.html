@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Site{% endblock %}</title>
+    <link rel="stylesheet" href="/estoque/static/css/style.css">
+    <script src="/estoque/static/js/script.js" defer></script>
+    <script src="/estoque/static/js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container"> 
+            <h1>ESTOQUEI</h1>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="{% url 'listar_produtos' %}" class="nav-link">Produtos</a></li>
+                    <li><a href="{% url 'lista_categorias' %}" class="nav-link">Categorias</a></li>
+                    <li><a href="{% url 'adicionar_produto' %}" class="nav-link">Adicionar Produto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+        </div>
+        <script>
+            // Definindo a variável `produtoId` com o ID do produto
+            var produtoId = "{{ produto.id }}";
+        </script>
+        <script src="/estoque/static/js/script.js" defer></script>
+    </footer>
+</body>
+</html>
