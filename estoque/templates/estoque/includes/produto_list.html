@@ -1,0 +1,57 @@
+<!-- estoque/includes/produto_list.html -->
+{% if produtos %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="product-table-body">
+    {% for produto in produtos %}
+    <tr>
+        <td>{{ produto.id }}</td>
+        <td>
+            {% if produto.imagem %}
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" style="max-width: 100px; max-height: 100px;">
+            {% else %}
+            <span>Sem Imagem</span>
+            {% endif %}
+        </td>
+        <td>{{ produto.nome }}</td>
+        <td>
+            <div class="description-container">
+                <p class="description-text" id="desc-{{ produto.id }}">
+                    {{ produto.descricao }}
+                </p>
+                <button class="btn-link" type="button" data-id="{{ produto.id }}" aria-expanded="false">Ver Mais</button>
+            </div>
+        </td>                  
+        <td>R$ {{ produto.preco|floatformat:2 }}</td>
+        <td>{{ produto.quantidade }}</td>
+        <td>{{ produto.categoria.nome|default:"Sem categoria" }}</td>
+        <td>
+            <div class="btn-group" role="group">
+                <a href="{% url 'detalhe_produto' produto.id %}" class="btn btn-info btn-sm" aria-label="Ver detalhes do produto {{ produto.nome }}">Detalhes</a>
+                <a href="{% url 'editar_produto' produto.id %}" class="btn btn-primary btn-sm" aria-label="Editar produto {{ produto.nome }}">Editar</a>
+                <a href="{% url 'deletar_produto' produto.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza de que deseja excluir este produto?');" aria-label="Excluir produto {{ produto.nome }}">Excluir</a>
+            </div>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="8">Nenhum produto encontrado.</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Nenhum produto encontrado.</p>
+<script src="/estoque/static/js/script.js" defer></script>
+{% endif %}

@@ -54,6 +54,29 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'listar_produtos'  # Ou a URL desejada
+LOGOUT_REDIRECT_URL = 'login'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django_debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 WSGI_APPLICATION = 'estoque_project.wsgi.application'
 
 # Database configuration
