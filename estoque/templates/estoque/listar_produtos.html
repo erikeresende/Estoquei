@@ -6,86 +6,25 @@
     <h2>Lista de Produtos</h2>
 
     <!-- Formulário de pesquisa -->
-    <form id="search-form" action="{% url 'buscar_produtos' %}" method="get">
-        <div class="mb-3">
+    <form id="search-form" action="{% url 'listar_produtos' %}" method="get">
+        <div class="mb-3 input-group">
             <input type="text" id="search-input" name="query" class="form-control" placeholder="Pesquisar produtos">
             <button class="btn btn-primary" type="submit">Pesquisar</button>
         </div>
     </form>
-    
 
     <!-- Botão para ver todos os produtos -->
-    <a href="#" id="view-all" class="btn btn-secondary mb-3">Ver Todos Produtos</a>
+    <a href="{% url 'listar_produtos' %}" id="view-all" class="btn btn-secondary mb-3">Ver Todos Produtos</a>
 
     <!-- Botão para adicionar um novo produto -->
-    <a href="{% url 'adicionar_produto' %}" class="btn btn-success">Adicionar Produto</a>
+    <a href="{% url 'adicionar_produto' %}" class="btn btn-success mb-3">Adicionar Produto</a>
 
     <!-- Lista de Produtos -->
-    {% if produtos %}
     <div class="table-responsive" id="product-list">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Imagem</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Categoria</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for produto in produtos %}
-                <tr>
-                    <td>{{ produto.id }}</td>
-                    <td>
-                        {% if produto.imagem %}
-                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" style="max-width: 100px; max-height: 100px;">
-                        {% else %}
-                        <span>Sem Imagem</span>
-                        {% endif %}
-                    </td>
-                    <td>{{ produto.nome }}</td>
-                    <td>
-                        <div class="description-container">
-                            <p class="description-text" id="desc-{{ produto.id }}" 
-                               data-full-description="{{ produto.descricao|escapejs }}"
-                               data-short-description="{% if produto.descricao|length > 200 %}{{ produto.descricao|slice:":200" }}{% else %}{{ produto.descricao }}{% endif %}">
-                                {% if produto.descricao|length > 200 %}
-                                {{ produto.descricao|slice:":200" }}...
-                                <button class="btn btn-link toggle-btn" onclick="toggleDescription('{{ produto.id|escapejs }}')">Ver Mais</button>
-                                {% else %}
-                                {{ produto.descricao }}
-                                {% endif %}
-                            </p>
-                        </div>
-                    </td>
-                    <td>R$ {{ produto.preco|floatformat:2 }}</td>
-                    <td>{{ produto.quantidade }}</td>
-                    <td>{{ produto.categoria.nome|default:"Sem categoria" }}</td>
-                    <td>
-                        <div class="acao-container">
-                            <a href="{% url 'detalhe_produto' produto.id %}" class="btn btn-info btn-sm" aria-label="Ver detalhes do produto {{ produto.nome }}">Detalhes</a>
-                            <a href="{% url 'editar_produto' produto.id %}" class="btn btn-primary btn-sm" aria-label="Editar produto {{ produto.nome }}">Editar</a>
-                            <a href="{% url 'deletar_produto' produto.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza de que deseja excluir este produto?');" aria-label="Excluir produto {{ produto.nome }}">Excluir</a>
-                        </div>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="8">Nenhum produto encontrado.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% include 'estoque/includes/produto_list.html' %}
     </div>
-    {% else %}
-    <p>Nenhum produto encontrado.</p>
-    {% endif %}
+
 </div>
 
-<script src="{% static 'js/script.js' %}" defer></script>
-
+<script src="/estoque/static/js/script.js" defer></script>
 {% endblock %}

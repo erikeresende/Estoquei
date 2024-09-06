@@ -1,0 +1,35 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Criar Conta</h2>
+                    <p class="text-center mb-4 text-muted">"Sua porta de entrada para uma gestão de estoque mais eficiente."</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password1.label_tag }}
+                            {{ form.password1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.password2.label_tag }}
+                            {{ form.password2 }}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Registrar</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p class="mb-0">Já tem uma conta? <a href="{% url 'login' %}" class="text-primary">Faça login aqui</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

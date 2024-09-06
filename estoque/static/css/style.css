@@ -15,23 +15,23 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    flex-direction: column; /* Para centralizar o conteúdo verticalmente */
+    flex-direction: column;
 }
 
 /* Cabeçalho */
 header {
     text-align: center;
     color: #e0e0e0;
-    padding: 30px 0;
+    padding: 40px 0;
     border-bottom: 1px solid #4e4e4e;
     background-color: #1f1f1f;
 }
 
 header h1 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 4em;
+    font-size: 3.5em;
     margin: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Navegação */
@@ -44,7 +44,7 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 nav ul li a {
@@ -60,13 +60,13 @@ nav ul li a:hover {
 
 /* Principal */
 main {
-    padding: 20px 0;
+    padding: 30px 0;
 }
 
 /* Rodapé */
 footer {
     background: #1f1f1f;
-    padding: 15px 0;
+    padding: 20px 0;
     text-align: center;
     color: #6c757d;
     border-top: 1px solid #333;
@@ -122,6 +122,7 @@ footer p {
 
 .btn-primary {
     background-color: #007bff;
+    transform: scale(1.05);
 }
 
 .btn-primary:hover {
@@ -213,7 +214,7 @@ footer p {
 
 .table th, .table td {
     border: 1px solid #333;
-    padding: 12px;
+    padding: 14px;
     text-align: left;
     color: #e0e0e0;
 }
@@ -251,26 +252,20 @@ footer p {
 /* Descrição Expandível */
 .description-container {
     position: relative;
-    max-width: 100%;
 }
 
 .description-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    max-height: 90px; /* altura padrão quando a descrição está recolhida */
     overflow: hidden;
-    text-overflow: ellipsis;
-    transition: max-height 0.5s ease; /* Ajustado para suavizar a transição */
-    max-height: 90px; /* Ajuste o valor conforme necessário */
+    transition: max-height 0.3s ease;
 }
 
 .description-text.expanded {
-    -webkit-line-clamp: unset;
-    max-height: none;
+    max-height: none; /* altura para quando a descrição está expandida */
 }
 
+
 .btn-link {
-    display: none;
     cursor: pointer;
     color: #007bff;
     background: none;
@@ -282,18 +277,6 @@ footer p {
 
 .btn-link:hover {
     color: #0056b3;
-}
-
-/* Efeitos de Transição na Tabela */
-.table tbody {
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    opacity: 0;
-    transform: translateY(-20px);
-}
-
-.table tbody.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .produto-item {
@@ -335,4 +318,122 @@ footer p {
 
 .btn-exibir:hover {
     background-color: #2980b9;
+}
+
+/* static/css/styles.css */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Estilo do cartão de login */
+.card {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+.text-primary:hover {
+    color: #0056b3;
+}
+
+/* Estilizando os campos do formulário */
+.mb-3 input {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+.mb-3 label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo do cartão de registro */
+.card {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.text-primary {
+    color: #007bff;
+}
+
+.text-primary:hover {
+    color: #0056b3;
+}
+
+/* Estilizando os campos do formulário */
+.mb-3 input {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+.mb-3 label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }

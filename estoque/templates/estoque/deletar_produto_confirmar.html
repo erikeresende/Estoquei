@@ -1,6 +1,7 @@
 {% extends 'estoque/base.html' %}
 {% load static %}
 {% block title %}Confirmar Exclusão{% endblock %}
+{% block content %}
 {% load custom_filters %}
 
 <div class="container mt-4">
@@ -20,6 +21,6 @@
     </section>
 
     <!-- Incluindo o script JavaScript -->
-    <script src="/estoque/static/js/script.js" defer></script>
+    <script src="{% static 'js/script.js' %}" defer></script>
 </div>
 {% endblock %}
